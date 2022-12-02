@@ -1,0 +1,34 @@
+lists = input('Введите любые числа через пробел: ').split()
+arrays = list(map(int, lists))
+num = int(input('Введите любое число из тех которые вы вводили пару секунд назад:) '))
+
+
+def sorts():
+    for i in range(1, len(arrays)):
+        x = arrays[i]
+        idx = i
+        while idx > 0 and arrays[idx - 1] > x:
+            arrays[idx] = arrays[idx - 1]
+            idx -= 1
+        arrays[idx] = x
+sorts()
+
+
+def binary_search(array, element, left, right):
+    if left > right:
+        return False
+    middle = (right + left) // 2
+    if array[middle] == element:
+        return middle
+    elif element < array[middle]:
+        return binary_search(array, element, left, middle - 1)
+    else:
+        return binary_search(array, element, middle + 1, right)
+
+
+element = num
+array = [i for i in range(1, 100)]
+
+
+print('Индекс вашего числа: ' + str(binary_search(array, element, 0, 99)))
+
